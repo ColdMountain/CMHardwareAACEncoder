@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.encoder = [[AppleHardwareAACEncoder alloc]init];
+    
     self.fileManager = [NSFileManager defaultManager];
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [path objectAtIndex:0];
@@ -36,8 +38,6 @@
     inputStream.delegate = self;
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [inputStream open];
-    
-    self.encoder = [[AppleHardwareAACEncoder alloc]init];
 }
 
 - (void)stream:(NSInputStream *)stream handleEvent:(NSStreamEvent)eventCode {
